@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html class="scroll-smooth" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Ammlan Rath — Computer Science &amp; Engineering | Creative Technologist Portfolio</title>
+<!-- Tailwind CSS v3 -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Google Fonts: Cormorant Garamond, MonteCarlo, JetBrains Mono, Plus Jakarta Sans -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&amp;family=JetBrains+Mono:wght@300;400;500;600&amp;family=MonteCarlo&amp;family=Plus+Jakarta+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              black: '#070606',
+              surface: '#0d0b0c',
+              card: '#130f11',
+              border: 'rgba(255, 255, 255, 0.08)',
+              borderLight: 'rgba(255, 255, 255, 0.16)',
+              crimson: '#2f0c13',
+              ruby: '#6b1728',
+              emerald: '#10b981',
+              cream: '#ece3da',
+              muted: '#968b85',
+              code: '#d4c5b9'
+            }
+          },
+          fontFamily: {
+            serif: ['"Cormorant Garamond"', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+            mono: ['"JetBrains Mono"', 'monospace'],
+            script: ['"MonteCarlo"', 'cursive'],
+          }
+        }
+      }
+    }
+  </script>
+<style data-purpose="custom-typography">
+    .font-huge-portfolio {
+      font-size: clamp(4.5rem, 16vw, 15.5rem);
+      line-height: 0.82;
+      letter-spacing: -0.035em;
+    }
+    .text-script-fluid {
+      font-family: 'MonteCarlo', cursive;
+      font-weight: 400;
+    }
+  </style>
+<style data-purpose="visual-effects">
+    .hero-glow {
+      background: radial-gradient(circle at 50% 32%, rgba(135, 24, 48, 0.28) 0%, rgba(7, 6, 6, 0) 72%);
+    }
+    .tech-glow-left {
+      background: radial-gradient(ellipse at 0% 45%, rgba(90, 15, 30, 0.35) 0%, transparent 68%);
+    }
+    .tech-glow-right {
+      background: radial-gradient(ellipse at 100% 55%, rgba(75, 12, 25, 0.35) 0%, transparent 68%);
+    }
+    .crt-grid {
+      background-size: 32px 32px;
+      background-image: 
+        linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+    }
+  </style>
+</head>
+<body class="bg-brand-black text-brand-cream font-sans antialiased selection:bg-brand-ruby selection:text-white relative min-h-screen">
+<!-- Ambient Glow Overlays -->
+<div class="pointer-events-none fixed inset-0 hero-glow z-0"></div>
+<div class="pointer-events-none fixed -left-32 top-1/4 w-96 h-[600px] tech-glow-left z-0"></div>
+<div class="pointer-events-none fixed -right-32 bottom-1/4 w-96 h-[600px] tech-glow-right z-0"></div>
+<div class="pointer-events-none fixed inset-0 crt-grid opacity-60 z-0"></div>
+
+<!-- True Fixed Background Canvas Wrapper (Escapes all containing blocks and overflow restrictions) -->
+<div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center pointer-events-none z-50 w-64 sm:w-80 md:w-96 lg:w-[420px]" id="portrait-wrapper">
+<canvas class="w-full h-auto object-cover object-top transition-all duration-75" id="hero-canvas" style="aspect-ratio: 420/550;"></canvas>
+<!-- Subtle cinematic scanline simulation overlay -->
+<div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80 pointer-events-none"></div>
+</div>
+
+<!-- Main App Container -->
+<div class="relative z-10 max-w-[1240px] mx-auto border-x border-brand-border bg-transparent shadow-2xl">
+<!-- BEGIN: TopBar -->
+<header class="flex items-center justify-between px-6 sm:px-10 py-5 border-b border-brand-border text-[11px] tracking-[0.25em] font-mono uppercase text-brand-muted" data-purpose="site-header">
+<div class="flex items-center gap-2 hover:text-white transition-colors cursor-default">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse"></span>
+<span>COMPUTER SCIENCE &amp; ENGINEERING</span>
+</div>
+<div class="hover:text-white transition-colors cursor-default">PORTFOLIO &amp; LABS</div>
+</header>
+<!-- END: TopBar -->
+<!-- BEGIN: HeroScrollSection -->
+<section class="relative pt-12 pb-12 sm:pt-20 sm:pb-16 border-b border-brand-border overflow-hidden" data-purpose="hero-banner" id="hero-scroll-container">
+<!-- Big Serif Headline Behind/Intertwined with Portrait -->
+<div class="relative flex justify-center items-center w-full select-none min-h-[300px] sm:min-h-[420px] md:min-h-[480px]">
+<h1 class="font-huge-portfolio font-serif font-normal text-[#e6dbd1] uppercase text-center w-full tracking-tight transition-transform duration-300" id="hero-bg-title">
+      PORTFOLIO
+    </h1>
+</div>
+
+<!-- Hero Supporting Meta Columns -->
+<div class="relative z-20 px-6 sm:px-10 mt-6 sm:mt-10 grid grid-cols-1 md:grid-cols-2 gap-8 items-end justify-between">
+<!-- Left Hero Content -->
+<div class="space-y-4 max-w-md">
+<h2 class="text-xs sm:text-[13px] font-semibold tracking-[0.2em] uppercase leading-relaxed text-brand-cream/90">
+        CRAFTING INTELLIGENT SYSTEMS, DISTRIBUTED ARCHITECTURES &amp; CREATIVE CODE
+      </h2>
+<div class="flex flex-wrap items-center gap-3">
+<a class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-emerald-500/30 bg-emerald-500/10 backdrop-blur-sm text-[10px] font-mono uppercase tracking-wider text-emerald-300 hover:bg-emerald-500/20 hover:border-emerald-400/50 transition" href="#contact">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-ping"></span>
+<span>AVAILABLE FOR RESEARCH &amp; INTERNSHIPS</span>
+<span class="text-[10px]">✦</span>
+</a>
+</div>
+<div class="pt-1">
+<span class="text-script-fluid text-4xl sm:text-5xl md:text-6xl text-brand-muted/80 tracking-wide block -rotate-2 select-none hover:text-brand-cream transition-colors duration-300">
+          Ammlan Rath
+        </span>
+</div>
+</div>
+<!-- Right Hero Content -->
+<div class="md:text-right space-y-5 flex flex-col md:items-end justify-end">
+<p class="text-xs sm:text-[13px] leading-relaxed text-brand-muted max-w-sm font-light">
+        B.Tech in Computer Science &amp; Engineering. Passionate about AI/ML, Full-Stack Systems, and High-Performance Software.
+      </p>
+<!-- Interactive Frame Scrubber Pill -->
+<div class="flex items-center gap-2 px-3 py-1.5 rounded-md border border-white/10 bg-white/[0.02] text-[10px] font-mono tracking-wider text-brand-muted/90">
+<span>FRAME SEQUENCE</span>
+<span class="text-brand-cream">✦</span>
+<span class="text-brand-cream/80">300 FRAMES (SCROLL-CONTROLLED)</span>
+</div>
+<div class="flex items-center md:justify-end gap-2.5 text-[11px] font-mono tracking-[0.18em] uppercase text-brand-cream/80">
+<div class="text-right leading-tight">
+<div>BHUBANESWAR / INDIA</div>
+<div class="text-brand-muted text-[10px]">OPEN TO GLOBAL OPPORTUNITIES</div>
+</div>
+<div class="w-8 h-8 rounded-full border border-white/20 flex items-center justify-center text-xs text-brand-cream">
+          🌐
+        </div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: HeroScrollSection -->
+<!-- BEGIN: SelectedProjects -->
+<section class="border-b border-brand-border" data-purpose="projects-showcase" id="projects">
+<!-- Section Header Bar -->
+<div class="flex items-center justify-between px-6 sm:px-10 py-5 border-b border-brand-border text-xs uppercase tracking-[0.2em]">
+<div class="flex items-center gap-2 font-medium">
+<span>SELECTED PROJECTS</span>
+<span class="text-[9px]">✦</span>
+</div>
+<a class="group flex items-center gap-2 text-brand-muted hover:text-brand-cream transition text-[11px] font-mono tracking-[0.18em]" href="https://github.com" rel="noopener noreferrer" target="_blank">
+<span>VIEW GITHUB REPOSITORIES</span>
+<span class="transform group-hover:translate-x-1 transition-transform">⟶</span>
+</a>
+</div>
+<!-- Projects Grid (3 Columns) -->
+<div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-brand-border">
+<!-- Project 1: NEURAPOD -->
+<article class="p-6 sm:p-7 flex flex-col justify-between group cursor-pointer transition-all duration-300 hover:bg-white/[0.02]">
+<div>
+<div class="flex items-baseline justify-between mb-4">
+<span class="font-mono text-base text-brand-muted/60">01</span>
+<div class="text-right">
+<h3 class="text-xs font-semibold tracking-wider uppercase text-brand-cream group-hover:text-white transition-colors">NEURAPOD / ML PIPELINE</h3>
+<span class="text-[10px] font-mono text-brand-muted">AI &amp; Distributed Systems</span>
+</div>
+</div>
+<!-- Visual Terminal / Code Preview Card -->
+<div class="relative w-full aspect-[4/5] rounded-sm overflow-hidden bg-[#1e0e14] border border-white/10 p-5 flex flex-col justify-between shadow-2xl transition-transform duration-500 group-hover:scale-[1.01]">
+<div class="flex items-center justify-between text-[9px] font-mono tracking-widest text-brand-muted/70">
+<span>RAY + PYTORCH WORKERS</span>
+<span class="text-emerald-400">● RUNNING</span>
+</div>
+<div class="space-y-2.5 my-auto text-center py-4">
+<h4 class="font-serif text-2xl text-[#f5ebe2] font-light leading-snug">
+            Autonomous<br/>Distributed Model Sharding
+          </h4>
+<p class="text-[11px] font-mono text-brand-muted/80 max-w-[210px] mx-auto">
+            Zero-copy gradient sync &amp; multi-node scheduler.
+          </p>
+<div class="w-16 h-[1px] bg-white/20 mx-auto mt-2"></div>
+</div>
+<!-- Terminal Shell Snippet -->
+<div class="w-full bg-black/70 rounded border border-white/10 p-2.5 font-mono text-left">
+<div class="flex items-center justify-between pb-1 mb-1 border-b border-white/10">
+<div class="flex gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-red-400/70"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-yellow-400/70"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400/70"></span>
+</div>
+<span class="text-[8px] text-brand-muted">node_cluster.py</span>
+</div>
+<p class="text-[8px] text-brand-code font-mono truncate">&gt; ray.init(num_cpus=64, gpus=8)</p>
+<p class="text-[8px] text-emerald-400/80 font-mono truncate">&gt; 3.2M samples/sec • 99.4% eff</p>
+</div>
+</div>
+</div>
+<!-- Tags -->
+<div class="flex flex-wrap items-center gap-1.5 mt-5 text-[9px] font-mono tracking-wider text-brand-muted">
+<span class="px-2 py-1 bg-white/5 border border-white/5 rounded">DEEP LEARNING</span>
+<span class="px-2 py-1 bg-white/5 border border-white/5 rounded">PYTORCH</span>
+<span class="px-2 py-1 bg-white/5 border border-white/5 rounded">RAY</span>
+</div>
+</article>
+<!-- Project 2: QUANTUM VISUALIZER -->
+<article class="p-6 sm:p-7 flex flex-col justify-between group cursor-pointer transition-all duration-300 hover:bg-white/[0.02]">
+<div>
+<div class="flex items-baseline justify-between mb-4">
+<span class="font-mono text-base text-brand-muted/60">02</span>
+<div class="text-right">
+<h3 class="text-xs font-semibold tracking-wider uppercase text-brand-cream group-hover:text-white transition-colors">QUANTUM VISUALIZER</h3>
+<span class="text-[10px] font-mono text-brand-muted">Rust &amp; WebAssembly Compiler</span>
+</div>
+</div>
+<!-- Visual Preview Card -->
+<div class="relative w-full aspect-[4/5] rounded-sm overflow-hidden bg-[#1c1719] border border-white/10 p-5 flex flex-col justify-between shadow-2xl transition-transform duration-500 group-hover:scale-[1.01]">
+<div class="flex items-center justify-between text-[9px] font-mono tracking-widest text-brand-muted/70">
+<span>QASM COMPILER • WASM</span>
+<span class="text-brand-cream/70">v1.4.0</span>
+</div>
+<div class="space-y-2.5 my-auto text-center py-4">
+<h4 class="font-serif text-2xl text-[#f5ebe2] font-light leading-snug">
+            Realtime Qubit State<br/>Bloch Sphere Engine
+          </h4>
+<p class="text-[11px] font-mono text-brand-muted/80 max-w-[210px] mx-auto">
+            High-speed JIT statevector simulation on WebGL.
+          </p>
+<div class="w-16 h-[1px] bg-white/20 mx-auto mt-2"></div>
+</div>
+<!-- Terminal Shell Snippet -->
+<div class="w-full bg-black/70 rounded border border-white/10 p-2.5 font-mono text-left">
+<div class="flex items-center justify-between pb-1 mb-1 border-b border-white/10">
+<div class="flex gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-red-400/70"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-yellow-400/70"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400/70"></span>
+</div>
+<span class="text-[8px] text-brand-muted">qsim.wasm</span>
+</div>
+<p class="text-[8px] text-brand-code font-mono truncate">&gt; target: wasm32-unknown-unknown</p>
+<p class="text-[8px] text-emerald-400/80 font-mono truncate">&gt; 34-qubit state compiled in 1.4ms</p>
+</div>
+</div>
+</div>
+<!-- Tags -->
+<div class="flex flex-wrap items-center gap-1.5 mt-5 text-[9px] font-mono tracking-wider text-brand-muted">
+<span class="px-2 py-1 bg-white/5 border border-white/5 rounded">RUST</span>
+<span class="px-2 py-1 bg-white/5 border border-white/5 rounded">WASM</span>
+<span class="px-2 py-1 bg-white/5 border border-white/5 rounded">ALGORITHMS</span>
+</div>
+</article>
+<!-- Project 3: HYPERLEDGER DEFI PROTOCOL -->
+<article class="p-6 sm:p-7 flex flex-col justify-between group cursor-pointer transition-all duration-300 hover:bg-white/[0.02]">
+<div>
+<div class="flex items-baseline justify-between mb-4">
+<span class="font-mono text-base text-brand-muted/60">03</span>
+<div class="text-right">
+<h3 class="text-xs font-semibold tracking-wider uppercase text-brand-cream group-hover:text-white transition-colors">HYPERLEDGER PROTOCOL</h3>
+<span class="text-[10px] font-mono text-brand-muted">Distributed Systems &amp; Next.js</span>
+</div>
+</div>
+<!-- Visual Preview Card -->
+<div class="relative w-full aspect-[4/5] rounded-sm overflow-hidden bg-[#161215] border border-white/10 p-5 flex flex-col justify-between shadow-2xl transition-transform duration-500 group-hover:scale-[1.01]">
+<div class="flex items-center justify-between text-[9px] font-mono tracking-widest text-brand-muted/70">
+<span>ETHEREUM L2 • ZERO-KNOWLEDGE</span>
+<span class="text-emerald-400">● VERIFIED</span>
+</div>
+<div class="space-y-2.5 my-auto text-center py-4">
+<h4 class="font-serif text-2xl text-[#f5ebe2] font-light leading-snug">
+            Decentralized Orderbook<br/>&amp; Rollup Bridge
+          </h4>
+<p class="text-[11px] font-mono text-brand-muted/80 max-w-[210px] mx-auto">
+            Sub-millisecond matching engine with EVM proof verification.
+          </p>
+<div class="w-16 h-[1px] bg-white/20 mx-auto mt-2"></div>
+</div>
+<!-- Terminal Shell Snippet -->
+<div class="w-full bg-black/70 rounded border border-white/10 p-2.5 font-mono text-left">
+<div class="flex items-center justify-between pb-1 mb-1 border-b border-white/10">
+<div class="flex gap-1">
+<span class="w-1.5 h-1.5 rounded-full bg-red-400/70"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-yellow-400/70"></span>
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-400/70"></span>
+</div>
+<span class="text-[8px] text-brand-muted">rollup_bridge.go</span>
+</div>
+<p class="text-[8px] text-brand-code font-mono truncate">&gt; zkSNARK proof batch: #84291</p>
+<p class="text-[8px] text-emerald-400/80 font-mono truncate">&gt; gas saved: 88.2% vs standard L1</p>
+</div>
+</div>
+</div>
+<!-- Tags -->
+<div class="flex flex-wrap items-center gap-1.5 mt-5 text-[9px] font-mono tracking-wider text-brand-muted">
+<span class="px-2 py-1 bg-white/5 border border-white/5 rounded">DISTRIBUTED SYSTEMS</span>
+<span class="px-2 py-1 bg-white/5 border border-white/5 rounded">GO</span>
+<span class="px-2 py-1 bg-white/5 border border-white/5 rounded">FULL STACK</span>
+</div>
+</article>
+</div>
+</section>
+<!-- END: SelectedProjects -->
+<!-- BEGIN: MethodologyAndTech -->
+<section class="border-b border-brand-border grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-brand-border" data-purpose="methodology-and-tech">
+<!-- Left Column: Engineering Methodology (5 cols) -->
+<div class="lg:col-span-5 p-6 sm:p-9 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 font-medium text-xs font-mono tracking-[0.2em] uppercase mb-8">
+<span>ENGINEERING METHODOLOGY</span>
+<span class="text-[9px]">✦</span>
+</div>
+<div class="space-y-5">
+<!-- Step 01 -->
+<div class="flex items-start gap-4">
+<span class="font-mono text-sm text-brand-muted/70 leading-none pt-0.5">01</span>
+<div>
+<h4 class="text-xs font-semibold uppercase tracking-wider text-brand-cream">ARCHITECTURE</h4>
+<p class="text-[11px] text-brand-muted leading-relaxed mt-0.5">System design, algorithmic complexity modeling &amp; protocol specification.</p>
+</div>
+</div>
+<!-- Step 02 -->
+<div class="flex items-start gap-4">
+<span class="font-mono text-sm text-brand-muted/70 leading-none pt-0.5">02</span>
+<div>
+<h4 class="text-xs font-semibold uppercase tracking-wider text-brand-cream">PROTOTYPING</h4>
+<p class="text-[11px] text-brand-muted leading-relaxed mt-0.5">Benchmarking bottlenecks, synthetic load validation &amp; core data pipelines.</p>
+</div>
+</div>
+<!-- Step 03 -->
+<div class="flex items-start gap-4">
+<span class="font-mono text-sm text-brand-muted/70 leading-none pt-0.5">03</span>
+<div>
+<h4 class="text-xs font-semibold uppercase tracking-wider text-brand-cream">IMPLEMENTATION</h4>
+<p class="text-[11px] text-brand-muted leading-relaxed mt-0.5">Writing clean, memory-safe, typed, scalable code with full unit &amp; integration test suites.</p>
+</div>
+</div>
+<!-- Step 04 -->
+<div class="flex items-start gap-4">
+<span class="font-mono text-sm text-brand-muted/70 leading-none pt-0.5">04</span>
+<div>
+<h4 class="text-xs font-semibold uppercase tracking-wider text-brand-cream">BENCHMARKING</h4>
+<p class="text-[11px] text-brand-muted leading-relaxed mt-0.5">P99 latency profiling, concurrency stress testing, memory leaks &amp; cache optimization.</p>
+</div>
+</div>
+<!-- Step 05 -->
+<div class="flex items-start gap-4">
+<span class="font-mono text-sm text-brand-muted/70 leading-none pt-0.5">05</span>
+<div>
+<h4 class="text-xs font-semibold uppercase tracking-wider text-brand-cream">DEPLOYMENT</h4>
+<p class="text-[11px] text-brand-muted leading-relaxed mt-0.5">Containerized CI/CD pipelines, Kubernetes orchestration, telemetry &amp; live monitoring.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Middle Column: Engineering Motif Vignette (3 cols) -->
+<div class="lg:col-span-3 p-6 sm:p-9 flex flex-col items-center justify-center text-center relative overflow-hidden bg-gradient-to-b from-brand-black via-[#1c0c11]/40 to-brand-black">
+<!-- Circular Tech Core Motif -->
+<div class="w-32 h-32 rounded-full border border-brand-ruby/40 p-1.5 flex items-center justify-center relative mb-5 group">
+<div class="w-full h-full rounded-full bg-[#270b13] flex flex-col items-center justify-center overflow-hidden border border-white/10 shadow-inner">
+<span class="text-2xl font-mono text-brand-cream filter drop-shadow group-hover:scale-110 transition-transform duration-500 cursor-default">λ</span>
+<span class="text-[9px] font-mono tracking-widest text-brand-muted/80 mt-1">CS &amp; ENG</span>
+</div>
+<div class="absolute inset-0 rounded-full border border-dashed border-brand-ruby/70 animate-spin" style="animation-duration: 25s;"></div>
+</div>
+<p class="text-xs sm:text-[13px] font-serif italic text-brand-cream/80 max-w-[190px] leading-snug">
+  "Rigorous systems theory combined with fearless engineering execution."
+</p>
+</div>
+<!-- Right Column: Tools & Tech Stack (4 cols) -->
+<div class="lg:col-span-4 p-6 sm:p-9 flex flex-col justify-between">
+<div>
+<div class="flex items-center gap-2 font-medium text-xs font-mono tracking-[0.2em] uppercase mb-8">
+<span>TECH STACK &amp; LAB TOOLS</span>
+<span class="text-[9px]">✦</span>
+</div>
+<!-- Tech Badges 2-Column Grid -->
+<div class="grid grid-cols-2 gap-2.5 font-mono text-[10px]">
+<!-- Python -->
+<div class="flex items-center gap-2.5 p-2 rounded border border-brand-border bg-white/[0.02] hover:bg-white/[0.05] hover:border-brand-borderLight transition cursor-default">
+<span class="w-5 h-5 rounded bg-[#3572A5]/20 text-[#6ea9db] flex items-center justify-center text-[10px] font-bold">Py</span>
+<span class="font-medium tracking-wide text-brand-cream/90">PYTHON</span>
+</div>
+<!-- C++ -->
+<div class="flex items-center gap-2.5 p-2 rounded border border-brand-border bg-white/[0.02] hover:bg-white/[0.05] hover:border-brand-borderLight transition cursor-default">
+<span class="w-5 h-5 rounded bg-[#f34b7d]/20 text-[#f34b7d] flex items-center justify-center text-[10px] font-bold">C++</span>
+<span class="font-medium tracking-wide text-brand-cream/90">C / C++</span>
+</div>
+<!-- Rust -->
+<div class="flex items-center gap-2.5 p-2 rounded border border-brand-border bg-white/[0.02] hover:bg-white/[0.05] hover:border-brand-borderLight transition cursor-default">
+<span class="w-5 h-5 rounded bg-[#dea584]/20 text-[#dea584] flex items-center justify-center text-[10px] font-bold">Rs</span>
+<span class="font-medium tracking-wide text-brand-cream/90">RUST</span>
+</div>
+<!-- TypeScript -->
+<div class="flex items-center gap-2.5 p-2 rounded border border-brand-border bg-white/[0.02] hover:bg-white/[0.05] hover:border-brand-borderLight transition cursor-default">
+<span class="w-5 h-5 rounded bg-[#3178c6]/20 text-[#599de9] flex items-center justify-center text-[10px] font-bold">TS</span>
+<span class="font-medium tracking-wide text-brand-cream/90">TYPESCRIPT</span>
+</div>
+<!-- PyTorch -->
+<div class="flex items-center gap-2.5 p-2 rounded border border-brand-border bg-white/[0.02] hover:bg-white/[0.05] hover:border-brand-borderLight transition cursor-default">
+<span class="w-5 h-5 rounded bg-[#ee4c2c]/20 text-[#ee4c2c] flex items-center justify-center text-[10px] font-bold">🔥</span>
+<span class="font-medium tracking-wide text-brand-cream/90">PYTORCH</span>
+</div>
+<!-- Next.js -->
+<div class="flex items-center gap-2.5 p-2 rounded border border-brand-border bg-white/[0.02] hover:bg-white/[0.05] hover:border-brand-borderLight transition cursor-default">
+<span class="w-5 h-5 rounded bg-white/10 text-white flex items-center justify-center text-[10px] font-bold">▲</span>
+<span class="font-medium tracking-wide text-brand-cream/90">NEXT.JS</span>
+</div>
+<!-- Docker -->
+<div class="flex items-center gap-2.5 p-2 rounded border border-brand-border bg-white/[0.02] hover:bg-white/[0.05] hover:border-brand-borderLight transition cursor-default">
+<span class="w-5 h-5 rounded bg-[#2496ed]/20 text-[#2496ed] flex items-center justify-center text-[10px] font-bold">🐳</span>
+<span class="font-medium tracking-wide text-brand-cream/90">DOCKER</span>
+</div>
+<!-- Kubernetes -->
+<div class="flex items-center gap-2.5 p-2 rounded border border-brand-border bg-white/[0.02] hover:bg-white/[0.05] hover:border-brand-borderLight transition cursor-default">
+<span class="w-5 h-5 rounded bg-[#326ce5]/20 text-[#326ce5] flex items-center justify-center text-[10px] font-bold">⎈</span>
+<span class="font-medium tracking-wide text-brand-cream/90">KUBERNETES</span>
+</div>
+<!-- Linux -->
+<div class="flex items-center gap-2.5 p-2 rounded border border-brand-border bg-white/[0.02] hover:bg-white/[0.05] hover:border-brand-borderLight transition cursor-default">
+<span class="w-5 h-5 rounded bg-[#fcc624]/20 text-[#fcc624] flex items-center justify-center text-[10px] font-bold">🐧</span>
+<span class="font-medium tracking-wide text-brand-cream/90">LINUX</span>
+</div>
+<!-- PostgreSQL -->
+<div class="flex items-center gap-2.5 p-2 rounded border border-brand-border bg-white/[0.02] hover:bg-white/[0.05] hover:border-brand-borderLight transition cursor-default">
+<span class="w-5 h-5 rounded bg-[#4169e1]/20 text-[#7394ea] flex items-center justify-center text-[10px] font-bold">🐘</span>
+<span class="font-medium tracking-wide text-brand-cream/90">POSTGRESQL</span>
+</div>
+</div>
+</div>
+<div class="pt-5 text-[10px] font-mono uppercase tracking-[0.25em] text-brand-muted/70 flex items-center gap-2">
+<span>+ GIT, WEBGPU, RAY, RAYLEIGH &amp; CI/CD</span>
+</div>
+</div>
+</section>
+<!-- END: MethodologyAndTech -->
+<!-- BEGIN: RecognitionAndEndorsements -->
+<section class="border-b border-brand-border" data-purpose="client-testimonials">
+<!-- Header -->
+<div class="px-6 sm:px-10 py-5 border-b border-brand-border text-xs uppercase tracking-[0.2em] font-mono flex items-center justify-between">
+<div class="flex items-center gap-2 font-medium">
+<span>RECOGNITION &amp; ENDORSEMENTS</span>
+<span class="text-[9px]">✦</span>
+</div>
+<div class="text-[10px] text-brand-muted/80">ACADEMIA &amp; INDUSTRY MENTORS</div>
+</div>
+<!-- Testimonial Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 divide-y md:divide-y-0 md:divide-x divide-brand-border">
+<!-- Review 1 -->
+<div class="p-6 sm:p-8 flex flex-col justify-between space-y-6">
+<div class="space-y-3">
+<span class="font-serif text-3xl text-brand-ruby/80 leading-none block">“</span>
+<p class="text-xs sm:text-[13px] text-brand-cream/80 leading-relaxed font-light">
+        Ammlan demonstrated extraordinary algorithmic clarity during our distributed systems lab. He re-architected our pipeline with remarkable efficiency and precision.
+      </p>
+</div>
+<div class="flex items-center gap-3 pt-4 border-t border-white/5">
+<div class="w-9 h-9 rounded-full bg-white/10 overflow-hidden flex items-center justify-center text-xs font-mono border border-white/10 text-brand-cream">
+        PK
+      </div>
+<div>
+<div class="text-xs font-semibold uppercase tracking-wider text-brand-cream">DR. PRASANTA K.</div>
+<div class="text-[10px] font-mono text-brand-muted">PROFESSOR OF COMPUTER SCIENCE</div>
+</div>
+</div>
+</div>
+<!-- Review 2 -->
+<div class="p-6 sm:p-8 flex flex-col justify-between space-y-6">
+<div class="space-y-3">
+<span class="font-serif text-3xl text-brand-ruby/80 leading-none block">“</span>
+<p class="text-xs sm:text-[13px] text-brand-cream/80 leading-relaxed font-light">
+        Ammlan led our 36-hour national hackathon engineering sprint. His ability to switch between low-level systems profiling and full-stack UX delivery is exceptionally rare.
+      </p>
+</div>
+<div class="flex items-center gap-3 pt-4 border-t border-white/5">
+<div class="w-9 h-9 rounded-full bg-white/10 overflow-hidden flex items-center justify-center text-xs font-mono border border-white/10 text-brand-cream">
+        AR
+      </div>
+<div>
+<div class="text-xs font-semibold uppercase tracking-wider text-brand-cream">ANANYA R.</div>
+<div class="text-[10px] font-mono text-brand-muted">LEAD ARCHITECT, CLOUDSCALE LABS</div>
+</div>
+</div>
+</div>
+<!-- Review 3 -->
+<div class="p-6 sm:p-8 flex flex-col justify-between space-y-6">
+<div class="space-y-3">
+<span class="font-serif text-3xl text-brand-ruby/80 leading-none block">“</span>
+<p class="text-xs sm:text-[13px] text-brand-cream/80 leading-relaxed font-light">
+        His dedication to clean code, defensive architecture, and meticulous technical documentation makes collaborating with Ammlan an absolute joy for any senior engineer.
+      </p>
+</div>
+<div class="flex items-center gap-3 pt-4 border-t border-white/5">
+<div class="w-9 h-9 rounded-full bg-white/10 overflow-hidden flex items-center justify-center text-xs font-mono border border-white/10 text-brand-cream">
+        VM
+      </div>
+<div>
+<div class="text-xs font-semibold uppercase tracking-wider text-brand-cream">VIKRAM M.</div>
+<div class="text-[10px] font-mono text-brand-muted">PRINCIPAL RESEARCH SCIENTIST</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- END: RecognitionAndEndorsements -->
+<!-- BEGIN: ContactFooterSection -->
+<footer class="grid grid-cols-1 lg:grid-cols-12 divide-y lg:divide-y-0 lg:divide-x divide-brand-border" data-purpose="footer-cta" id="contact">
+<!-- Headline & Script Column (4 cols) -->
+<div class="lg:col-span-4 p-8 sm:p-10 flex flex-col justify-between">
+<div>
+<h2 class="text-xs font-bold uppercase tracking-[0.25em] text-brand-cream/90 leading-snug">
+      LET'S BUILD<br/>SOMETHING EXTRAORDINARY
+    </h2>
+<div class="text-script-fluid text-5xl sm:text-6xl text-brand-cream/90 mt-2 block select-none">
+      Exceptional
+    </div>
+</div>
+<div class="pt-6 font-mono text-[10px] tracking-widest text-brand-muted/70 uppercase">
+    CSE CLASS OF 2025 // RESEARCH &amp; INDUSTRY READY
+  </div>
+</div>
+<!-- CTA & Form Trigger (5 cols) -->
+<div class="lg:col-span-5 p-8 sm:p-10 flex flex-col justify-between space-y-8">
+<div>
+<h3 class="text-xs uppercase font-medium tracking-[0.2em] text-brand-cream font-mono">
+      OPEN FOR INTERNSHIPS &amp;<br/>TECH COLLABORATIONS
+    </h3>
+<p class="text-xs text-brand-muted mt-2 font-light">
+      Seeking research roles, systems engineering positions, and impactful technical problems to solve.
+    </p>
+<div class="mt-6">
+<a class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-white/20 bg-white/5 text-xs font-mono uppercase tracking-widest text-brand-cream hover:bg-white/10 hover:border-white/40 transition" href="mailto:ammlan.rath@cse.edu">
+<span>INITIATE CONTACT</span>
+<span class="text-xs">✦</span>
+</a>
+</div>
+</div>
+<!-- Contact Links / Socials -->
+<div class="space-y-2.5 pt-6 border-t border-white/5 text-xs font-mono text-brand-muted font-light">
+<a class="flex items-center gap-2.5 hover:text-brand-cream transition" href="mailto:ammlan.rath@cse.edu">
+<span class="text-xs">✉</span>
+<span>AMMLAN.RATH@CSE.EDU</span>
+</a>
+<a class="flex items-center gap-2.5 hover:text-brand-cream transition" href="https://github.com/ammlanrath" rel="noopener noreferrer" target="_blank">
+<span class="text-xs">⌘</span>
+<span>GITHUB.COM/AMMLANRATH</span>
+</a>
+<a class="flex items-center gap-2.5 hover:text-brand-cream transition" href="https://linkedin.com/in/ammlanrath" rel="noopener noreferrer" target="_blank">
+<span class="text-xs">⌁</span>
+<span>LINKEDIN.COM/IN/AMMLANRATH</span>
+</a>
+<div class="flex items-center gap-2.5 text-brand-muted/70 text-[11px]">
+<span class="text-xs">📍</span>
+<span>BHUBANESWAR, ODISHA, INDIA</span>
+</div>
+</div>
+</div>
+<!-- Thumbnail Portrait Vignette (3 cols) -->
+<div class="lg:col-span-3 p-6 sm:p-8 flex items-center justify-center relative overflow-hidden bg-gradient-to-br from-brand-black via-[#1c0b11]/40 to-brand-black">
+<div class="w-full max-w-[200px] aspect-[4/5] border border-white/10 rounded overflow-hidden relative shadow-2xl group">
+<img alt="Ammlan Rath Signature portrait" class="w-full h-full object-cover object-center filter grayscale contrast-125 group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB7Eg_SJJfMnfMxmXFigKVZns8xEvRQB_MLBlhxsSCAGBnFY2wQmSnhlth0hP31mZ6q7jBy1DqjgK3p8Q47FtURJE-oFAVMwxOW_GyiPhY6adIiMW-8ZY4cjYwwfSVx6IF7OTyW0QXbLvH8vO2eB55jZQxpptIgKfvtF3vEcpGqAVybt_eVNJDrC5KKyokrYMgToyI0V0DwUVsvN3-qKPMm_5u33bcel15pcbIsVnXUv7KKmQwCjlcf7Yp1yeQnzkNWK3A"/>
+<div class="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent"></div>
+<div class="absolute bottom-3 inset-x-0 text-center text-[9px] font-mono tracking-widest uppercase text-brand-cream/80">
+      AMMLAN RATH © 2025
+    </div>
+</div>
+</div>
+</footer>
+<!-- END: ContactFooterSection -->
+<!-- BEGIN: BottomMicroBar -->
+<div class="py-4 px-6 border-t border-brand-border text-center text-[10px] font-mono tracking-[0.3em] uppercase text-brand-muted/70 flex items-center justify-center gap-2">
+<span>DESIGNED &amp; ARCHITECTED BY AMMLAN RATH</span>
+<span class="text-[8px]">✦</span>
+<span>B.TECH CSE</span>
+</div>
+<!-- END: BottomMicroBar -->
+</div>
+<!-- Vanilla JS: Scroll-driven Frame Sequence & Interactive Scrub Simulation -->
+<script>
+  (function initScrollScrubber() {
+    const totalFrames = 300;
+    const heroSection = document.getElementById('hero-scroll-container');
+    const hudFrame = document.getElementById('hud-frame-display');
+    const hudProgressBar = document.getElementById('hud-progress-bar');
+    const hudPercent = document.getElementById('hud-percent');
+    
+    // Canvas setup
+    const canvas = document.getElementById('hero-canvas');
+    const context = canvas.getContext('2d');
+    const portraitWrapper = document.getElementById('portrait-wrapper');
+    const bgTitle = document.getElementById('hero-bg-title');
+    
+    // Image preloading
+    const currentFrame = index => `Pic/ezgif-frame-${index.toString().padStart(3, '0')}.png`;
+    const images = [];
+    const preloadImages = () => {
+      for (let i = 1; i <= totalFrames; i++) {
+        const img = new Image();
+        img.src = currentFrame(i);
+        images.push(img);
+      }
+    };
+    preloadImages();
+    
+    // Setup initial image on canvas
+    const img = new Image();
+    img.src = currentFrame(1);
+    img.onload = function() {
+      canvas.width = img.width;
+      canvas.height = img.height;
+      context.drawImage(img, 0, 0);
+    };
+
+    function updateHeroScroll() {
+      if (!heroSection) return;
+      const rect = heroSection.getBoundingClientRect();
+      const windowHeight = window.innerHeight;
+      
+      // Calculate scroll progress based on the total page height 
+      // instead of just the hero section, because the user wants a full scroll-driven animation
+      const scrollY = window.scrollY;
+      const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+      
+      // Compute normalized progress between 0 and 1
+      let progress = maxScroll > 0 ? Math.min(Math.max(scrollY / maxScroll, 0), 1) : 0;
+      
+      // Current frame out of 300
+      let currentFrameIndex = Math.min(
+        totalFrames - 1,
+        Math.floor(progress * totalFrames)
+      );
+      
+      let paddedFrame = String(currentFrameIndex + 1).padStart(3, '0');
+      let percentVal = Math.round(progress * 100);
+
+      // Update HUD elements
+      if (hudFrame) {
+        hudFrame.textContent = `FRAME ${paddedFrame} / ${totalFrames}`;
+      }
+      if (hudProgressBar) {
+        hudProgressBar.style.width = `${Math.max(percentVal, 5)}%`;
+      }
+      if (hudPercent) {
+        hudPercent.textContent = `${percentVal}%`;
+      }
+
+      // Draw the current frame to the canvas
+      if (images[currentFrameIndex] && images[currentFrameIndex].complete) {
+          canvas.width = images[currentFrameIndex].width;
+          canvas.height = images[currentFrameIndex].height;
+          
+          context.clearRect(0, 0, canvas.width, canvas.height); // clear previous frame
+          context.drawImage(images[currentFrameIndex], 0, 0);
+      }
+
+      // Parallax & smooth sequence scaling effect on portrait
+      if (portraitWrapper) {
+        // Do not scale up based on user request. Maintain original size.
+        const translateY = progress * 10; 
+        
+        // Push to background after initial scroll
+        if (progress > 0.05) {
+          portraitWrapper.style.zIndex = "-10";
+        } else {
+          portraitWrapper.style.zIndex = "50";
+        }
+
+        portraitWrapper.style.transform = `translate(-50%, calc(-50% + ${translateY}px))`;
+        
+        // Opacity drops to reveal text behind it and make it a subtle background,
+        // but we cap it at 80% (0.8) so it remains clearly visible throughout the rest of the page.
+        const opacity = Math.max(0.8, 1 - (progress * 1.5));
+        portraitWrapper.style.opacity = opacity;
+      }
+
+      // Dynamic film lighting & slight color grade shift per simulated frame
+      if (canvas) {
+        const brightness = 95 + (progress * 8);
+        const contrast = 108 + (progress * 4);
+        
+        canvas.style.filter = `contrast(${contrast}%) brightness(${brightness}%)`;
+      }
+
+      // Subtle parallax on huge title
+      if (bgTitle) {
+        bgTitle.style.transform = `translateY(${progress * -15}px)`;
+      }
+    }
+
+    let isScrolling = false;
+    window.addEventListener('scroll', () => {
+        if (!isScrolling) {
+            window.requestAnimationFrame(() => {
+                updateHeroScroll();
+                isScrolling = false;
+            });
+            isScrolling = true;
+        }
+    }, { passive: true });
+    
+    updateHeroScroll();
+  })();
+</script>
+</body></html>

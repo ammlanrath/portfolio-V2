@@ -1,30 +1,31 @@
-const canvas = document.getElementById('scroll-canvas');
+const canvas = document.getElementById('hero-canvas');
 const context = canvas.getContext('2d');
 
 const frameCount = 300;
 const currentFrame = index => (
-  `Pic/ezgif-frame-${index.toString().padStart(3, '0')}.png`
+  `Result/ezgif-frame-${index.toString().padStart(3, '0')}_result.webp`
 );
 
-// Preload images
-const images = [];
-const preloadImages = () => {
-  for (let i = 1; i <= frameCount; i++) {
-    const img = new Image();
-    img.src = currentFrame(i);
-    images.push(img);
-  }
+const images = new Array(frameCount + 1).fill(null);
+
+const loadFrame = (index) => {
+    if (!images[index]) {
+        const img = new Image();
+        img.src = currentFrame(index);
+        images[index] = img;
+    }
 };
 
-preloadImages();
+// Preload initial frames
+for (let i = 1; i <= 20; i++) {
+    loadFrame(i);
+}
 
 // Setup canvas on first image load
-const img = new Image();
-img.src = currentFrame(1);
-img.onload = function() {
-  canvas.width = img.width;
-  canvas.height = img.height;
-  context.drawImage(img, 0, 0);
+images[1].onload = function() {
+  canvas.width = images[1].width;
+  canvas.height = images[1].height;
+  context.drawImage(images[1], 0, 0);
 }
 
 let isScrolling = false;
@@ -39,25 +40,42 @@ window.addEventListener('scroll', () => {
         });
         isScrolling = true;
     }
-});
+}, { passive: true });
 
 const updateImage = (scrollY) => {
     const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollFraction = scrollY / maxScroll;
+    let scrollFraction = maxScroll > 0 ? scrollY / maxScroll : 0;
+    scrollFraction = Math.max(0, Math.min(1, scrollFraction));
     
-    // Calculate the current frame index
+    // Calculate the current frame index (1 to 300)
     let frameIndex = Math.min(
-        frameCount - 1,
-        Math.floor(scrollFraction * frameCount)
+        frameCount,
+        Math.floor(scrollFraction * frameCount) + 1
     );
     
-    if (images[frameIndex] && images[frameIndex].complete) {
-        // Adjust canvas resolution to match the current frame's resolution
-        canvas.width = images[frameIndex].width;
-        canvas.height = images[frameIndex].height;
-        
+    // Preload upcoming frames
+    for (let i = frameIndex; i <= Math.min(frameCount, frameIndex + 20); i++) {
+        loadFrame(i);
+    }
+    
+    let frameToDraw = frameIndex;
+    if (!images[frameToDraw] || !images[frameToDraw].complete) {
+        // Find closest loaded frame
+        let minDiff = Infinity;
+        for (let i = 1; i <= frameCount; i++) {
+            if (images[i] && images[i].complete) {
+                let diff = Math.abs(i - frameIndex);
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    frameToDraw = i;
+                }
+            }
+        }
+    }
+    
+    if (images[frameToDraw] && images[frameToDraw].complete) {
         context.clearRect(0, 0, canvas.width, canvas.height); // clear previous frame
-        context.drawImage(images[frameIndex], 0, 0);
+        context.drawImage(images[frameToDraw], 0, 0);
     }
 };
 

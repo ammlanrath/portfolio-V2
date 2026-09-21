@@ -504,23 +504,26 @@
     
     // Image preloading
     const currentFrame = index => `Result/ezgif-frame-${index.toString().padStart(3, '0')}_result.webp`;
-    const images = [];
-    const preloadImages = () => {
-      for (let i = 1; i <= totalFrames; i++) {
-        const img = new Image();
-        img.src = currentFrame(i);
-        images.push(img);
-      }
+    const images = new Array(totalFrames + 1).fill(null);
+    
+    const loadFrame = (index) => {
+        if (!images[index]) {
+            const img = new Image();
+            img.src = currentFrame(index);
+            images[index] = img;
+        }
     };
-    preloadImages();
+    
+    // Preload initial frames
+    for (let i = 1; i <= 20; i++) {
+        loadFrame(i);
+    }
     
     // Setup initial image on canvas
-    const img = new Image();
-    img.src = currentFrame(1);
-    img.onload = function() {
-      canvas.width = img.width;
-      canvas.height = img.height;
-      context.drawImage(img, 0, 0);
+    images[1].onload = function() {
+      canvas.width = images[1].width;
+      canvas.height = images[1].height;
+      context.drawImage(images[1], 0, 0);
     };
 
     function updateHeroScroll() {
@@ -538,11 +541,16 @@
       
       // Current frame out of 300
       let currentFrameIndex = Math.min(
-        totalFrames - 1,
-        Math.floor(progress * totalFrames)
+        totalFrames,
+        Math.floor(progress * totalFrames) + 1
       );
       
-      let paddedFrame = String(currentFrameIndex + 1).padStart(3, '0');
+      // Preload upcoming frames
+      for (let i = currentFrameIndex; i <= Math.min(totalFrames, currentFrameIndex + 20); i++) {
+          loadFrame(i);
+      }
+      
+      let paddedFrame = String(currentFrameIndex).padStart(3, '0');
       let percentVal = Math.round(progress * 100);
 
       // Update HUD elements
@@ -555,14 +563,26 @@
       if (hudPercent) {
         hudPercent.textContent = `${percentVal}%`;
       }
+      
+      let frameToDraw = currentFrameIndex;
+      if (!images[frameToDraw] || !images[frameToDraw].complete) {
+          // Find closest loaded frame
+          let minDiff = Infinity;
+          for (let i = 1; i <= totalFrames; i++) {
+              if (images[i] && images[i].complete) {
+                  let diff = Math.abs(i - currentFrameIndex);
+                  if (diff < minDiff) {
+                      minDiff = diff;
+                      frameToDraw = i;
+                  }
+              }
+          }
+      }
 
       // Draw the current frame to the canvas
-      if (images[currentFrameIndex] && images[currentFrameIndex].complete) {
-          canvas.width = images[currentFrameIndex].width;
-          canvas.height = images[currentFrameIndex].height;
-          
+      if (images[frameToDraw] && images[frameToDraw].complete) {
           context.clearRect(0, 0, canvas.width, canvas.height); // clear previous frame
-          context.drawImage(images[currentFrameIndex], 0, 0);
+          context.drawImage(images[frameToDraw], 0, 0);
       }
 
       // Parallax & smooth sequence scaling effect on portrait

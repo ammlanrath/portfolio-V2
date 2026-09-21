@@ -40,7 +40,7 @@
   </script>
 <style data-purpose="custom-typography">
     .font-huge-portfolio {
-      font-size: clamp(4.5rem, 16vw, 15.5rem);
+      font-size: clamp(4.5rem, 16cqw, 15.5rem);
       line-height: 0.82;
       letter-spacing: -0.035em;
     }
@@ -75,14 +75,14 @@
 <div class="pointer-events-none fixed inset-0 crt-grid opacity-60 z-0"></div>
 
 <!-- True Fixed Background Canvas Wrapper (Escapes all containing blocks and overflow restrictions) -->
-<div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center pointer-events-none z-50 w-64 sm:w-80 md:w-96 lg:w-[420px]" id="portrait-wrapper">
+<div class="fixed top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center pointer-events-none z-50 w-64 sm:w-80 md:w-96 lg:w-[420px] xl:w-[500px] 2xl:w-[600px]" id="portrait-wrapper">
 <canvas class="w-full h-auto object-cover object-top transition-all duration-75" id="hero-canvas" style="aspect-ratio: 420/550;"></canvas>
 <!-- Subtle cinematic scanline simulation overlay -->
 <div class="absolute inset-0 bg-gradient-to-t from-brand-black via-transparent to-transparent opacity-80 pointer-events-none"></div>
 </div>
 
 <!-- Main App Container -->
-<div class="relative z-10 max-w-[1240px] mx-auto border-x border-brand-border bg-transparent shadow-2xl">
+<div class="relative z-10 max-w-[1240px] xl:max-w-[1400px] 2xl:max-w-[1600px] mx-auto border-x border-brand-border bg-transparent shadow-2xl">
 <!-- BEGIN: TopBar -->
 <header class="flex items-center justify-between px-6 sm:px-10 py-5 border-b border-brand-border text-[11px] tracking-[0.25em] font-mono uppercase text-brand-muted" data-purpose="site-header">
 <div class="flex items-center gap-2 hover:text-white transition-colors cursor-default">
@@ -93,10 +93,10 @@
 </header>
 <!-- END: TopBar -->
 <!-- BEGIN: HeroScrollSection -->
-<section class="relative pt-12 pb-12 sm:pt-20 sm:pb-16 border-b border-brand-border overflow-hidden" data-purpose="hero-banner" id="hero-scroll-container">
+<section class="relative pt-12 pb-12 sm:pt-20 sm:pb-16 border-b border-brand-border overflow-hidden @container" data-purpose="hero-banner" id="hero-scroll-container">
 <!-- Big Serif Headline Behind/Intertwined with Portrait -->
 <div class="relative flex justify-center items-center w-full select-none min-h-[300px] sm:min-h-[420px] md:min-h-[480px]">
-<h1 class="font-huge-portfolio font-serif font-normal text-[#e6dbd1] uppercase text-center w-full tracking-tight transition-transform duration-300" id="hero-bg-title">
+<h1 class="font-huge-portfolio font-serif font-normal text-[#e6dbd1] uppercase text-center w-full tracking-tight transition-transform duration-300 whitespace-nowrap" id="hero-bg-title">
       PORTFOLIO
     </h1>
 </div>
@@ -173,7 +173,7 @@
 </div>
 <!-- Image Area -->
 <div class="relative w-full aspect-video rounded-sm overflow-hidden bg-white/5 border border-white/10 shadow-2xl transition-transform duration-500 group-hover:scale-[1.01]">
-<img src="Pic/project1.png" alt="Dynamic Portfolio" class="absolute inset-0 w-full h-full object-cover object-top opacity-70 group-hover:opacity-100 transition-opacity duration-500">
+<img src="Result/project1_result.webp" alt="Dynamic Portfolio" class="absolute inset-0 w-full h-full object-cover object-top opacity-70 group-hover:opacity-100 transition-opacity duration-500">
 </div>
 </div>
 <!-- Tags -->
@@ -196,7 +196,7 @@
 </div>
 <!-- Image Area -->
 <div class="relative w-full aspect-video rounded-sm overflow-hidden bg-white/5 border border-white/10 shadow-2xl transition-transform duration-500 group-hover:scale-[1.01]">
-<img src="Pic/project2.png" alt="Scroll Driven Portfolio" class="absolute inset-0 w-full h-full object-cover object-top opacity-70 group-hover:opacity-100 transition-opacity duration-500">
+<img src="Result/project2_result.webp" alt="Scroll Driven Portfolio" class="absolute inset-0 w-full h-full object-cover object-top opacity-70 group-hover:opacity-100 transition-opacity duration-500">
 </div>
 </div>
 <!-- Tags -->
@@ -219,7 +219,7 @@
 </div>
 <!-- Image Area -->
 <div class="relative w-full aspect-video rounded-sm overflow-hidden bg-white/5 border border-white/10 shadow-2xl transition-transform duration-500 group-hover:scale-[1.01]">
-<img src="Pic/project3.png" alt="Elevate Tuitions" class="absolute inset-0 w-full h-full object-cover object-top opacity-70 group-hover:opacity-100 transition-opacity duration-500">
+<img src="Result/project3_result.webp" alt="Elevate Tuitions" class="absolute inset-0 w-full h-full object-cover object-top opacity-70 group-hover:opacity-100 transition-opacity duration-500">
 </div>
 </div>
 <!-- Tags -->
@@ -503,7 +503,7 @@
     const bgTitle = document.getElementById('hero-bg-title');
     
     // Image preloading
-    const currentFrame = index => `Pic/ezgif-frame-${index.toString().padStart(3, '0')}.png`;
+    const currentFrame = index => `Result/ezgif-frame-${index.toString().padStart(3, '0')}_result.webp`;
     const images = [];
     const preloadImages = () => {
       for (let i = 1; i <= totalFrames; i++) {

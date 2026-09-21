@@ -75,7 +75,13 @@ const updateImage = (scrollY) => {
     
     if (images[frameToDraw] && images[frameToDraw].complete) {
         context.clearRect(0, 0, canvas.width, canvas.height); // clear previous frame
-        context.drawImage(images[frameToDraw], 0, 0);
+        
+        const img = images[frameToDraw];
+        const scale = Math.max(canvas.width / img.width, canvas.height / img.height);
+        const x = (canvas.width / 2) - (img.width / 2) * scale;
+        const y = (canvas.height / 2) - (img.height / 2) * scale;
+        
+        context.drawImage(img, x, y, img.width * scale, img.height * scale);
     }
 };
 
